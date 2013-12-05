@@ -1,0 +1,71 @@
+set mbox_type=Maildir
+
+#Caches
+set header_cache    = '~/.mutt/.cache/headercache'
+set message_cachedir= '~/.mutt/.cache/messagecache'
+set certificate_file='~/.mutt/.cache/certificates'
+
+set folder='~/old/.maildir'                                                                                                                                     
+set spoolfile='~/old/.maildir/'                                                                                                                                  
+set record='~/old/.maildir-sent/'
+
+set read_inc  = 100
+set mail_check= 90
+set timeout   = 15
+set beep_new
+
+set tmpdir           ='~/old/.tmp'
+set mailcap_path     ='~/.mutt/config/mailcap'
+set alias_file       ='~/.mutt/alias'
+set abort_nosubject  = ask-yes
+set abort_unmodified = yes
+set delete           = ask-yes
+set editor           = vim
+set mark_old         = no
+set sort             = threads
+set sort_aux         = reverse-last-date-received
+set pager_index_lines= 15
+
+set mailcap_path="~/.mailcap"
+auto_view text/html
+
+
+set include                     # always include messages when replying
+set indent_string="> "          # how to quote replied text
+
+#set resolve                   # move to the next message when an action is performed
+set nosave_empty                # remove files when no messages are left
+set save_name                   # save outgoing messages by recipient, if the
+# Header stuff
+ignore *                        # this means "ignore all lines by default"
+unignore        from: subject: to: cc: mail-followup-to: sender:\
+                date # this shows how nicely wrap long lines
+
+
+# Priorities should be heeded - even if M$ Outlook calls it "importance"..
+unignore priority: importance:
+
+# "Org-Lines" - can be fun to read:
+unignore organization organisation
+
+#see the identification of the "user agent":
+#unignore user-agent: x-agent: x-mailer: x-newsreader: x-mailing-list:
+# see the identification of the used editor:
+#unignore x-editor
+
+# recognize CCs from Usenet:
+unignore message-id: newsgroups: posted-to: posted-and-mailed:
+unignore x-also-posted-to:
+
+# this identifies mailing lists -
+# see also: 'followup_to' and 'honor_followup_to'
+unignore mail-followup-to:
+ignore "Authentication-Results:"
+ignore "DomainKey-Signature:"
+ignore "DKIM-Signature:"
+hdr_order Date From To Cc
+
+# ignore *
+unignore from: date subject to cc
+unignore x-mailing-list: posted-to:
+unignore x-mailer:

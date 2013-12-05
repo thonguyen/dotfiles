@@ -1,0 +1,10 @@
+#---------------#
+# Account Hooks #
+#---------------#
+account-hook . "unset imap_user; unset imap_pass; unset tunnel" # unset first!
+account-hook        "imaps://thonv133@imap.gmail.com:993/" "\
+set imap_user   = thonv133 \
+    imap_pass   = $my_gpass"
+account-hook        "imaps://nvtho@imap.ifi.refer.org:993/" "\
+set imap_user   = nvtho \
+    imap_pass   = $my_gpass2"
