@@ -1,0 +1,4 @@
+>=app-office/gtg-0.2 ~amd64
+=media-video/istanbul-0.2.2 ~amd64
+>=dev-tex/biblatex-2.1 ~amd64
+>=mail-client/trojita-0.3 ~amd64

@@ -1,0 +1,1 @@
+../../mnt/data/gentoo/portage/profiles/default/linux/amd64/13.0

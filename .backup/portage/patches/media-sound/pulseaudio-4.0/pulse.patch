@@ -1,0 +1,13 @@
+diff -Naur pulseaudio-4.0/src/pulse/stream.c pulseaudio-4.0.patch/src/pulse/stream.c
+--- pulseaudio-4.0/src/pulse/stream.c	2013-04-14 11:42:35.000000000 +0700
++++ pulseaudio-4.0.patch/src/pulse/stream.c	2013-10-26 09:33:01.286121504 +0700
+@@ -151,7 +151,8 @@
+ 
+     s->buffer_attr.maxlength = (uint32_t) -1;
+     if (ss)
+-        s->buffer_attr.tlength = (uint32_t) pa_usec_to_bytes(250*PA_USEC_PER_MSEC, ss); /* 250ms of buffering */
++/*        s->buffer_attr.tlength = (uint32_t) pa_usec_to_bytes(250*PA_USEC_PER_MSEC, ss);*/ /* 250ms of buffering */
++        s->buffer_attr.tlength = s->buffer_attr.maxlength;
+     else {
+         /* FIXME: We assume a worst-case compressed format corresponding to
+          * 48000 Hz, 2 ch, S16 PCM, but this can very well be incorrect */

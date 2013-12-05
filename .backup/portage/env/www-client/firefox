@@ -1,0 +1,3 @@
+CFLAGS="-Os -pipe -fomit-frame-pointer -march=native"
+CXXFLAGS="${CFLAGS}"
+LDFLAGS="${LDFLAGS} -Bdirect -Wl,-z,now"

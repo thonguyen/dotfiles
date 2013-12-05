@@ -1,0 +1,4 @@
+-introspection
+-pgo
+-system-wide
+-skype

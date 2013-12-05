@@ -1,0 +1,82 @@
+#=sys-libs/glibc-2.16.0 ~amd64
+=sys-devel/gcc-4.6.3 ~amd64
+>=net-im/skype-2.2.0.35-r1 ~amd64
+>=app-emulation/emul-linux-x86-qtlibs-20120520 ~amd64
+>=app-emulation/emul-linux-x86-baselibs-20120520 ~amd64
+>=app-emulation/emul-linux-x86-xlibs-20120520 ~amd64
+>=app-emulation/emul-linux-x86-medialibs-20120520 ~amd64
+>=app-emulation/emul-linux-x86-opengl-20120520 ~amd64
+>=app-emulation/emul-linux-x86-soundlibs-20120520-r2 ~amd64
+>=app-emulation/emul-linux-x86-db-20120520 ~amd64
+>=app-emulation/emul-linux-x86-gtklibs-20120127::gentoo ~amd64
+>=app-emulation/emul-linux-x86-xlibs-20120127::gentoo ~amd64
+>=app-emulation/emul-linux-x86-gtklibs-20120127::gentoo ~amd64
+
+>=net-misc/dropbox-1.2.13 ~amd64
+>=net-p2p/sopcast-bin-3.2.6 ~amd64
+>=www-client/firefox-6.0::gentoo ~amd64
+
+>=app-i18n/ibus-1.3.99.20110817 ~amd64
+>=app-i18n/ibus-unikey-0.5 ~amd64
+
+#>=sys-kernel/pf-sources-2.6.39_p3 ~amd64
+>=sys-firmware/iwl6000-ucode-9.221.4.1 ~amd64
+
+>=www-plugins/adobe-flash-11.0.1.129_rc201109061 ~amd64
+
+>=media-sound/ncmpcpp-0.5.8 ~amd64
+#>=sys-kernel/gentoo-sources-3.0.7 ~amd64
+
+>=sys-devel/libtool-1.5.26-r1:1.5 ~amd64
+>=dev-util/codelite-9999 **
+
+>=x11-misc/vdpauinfo-0.0.6 ~amd64
+
+#>=dev-java/icedtea-web-1.1.3-r7 ~amd64
+>=dev-java/icedtea-7.2.0-r1 ~amd64
+
+>=dev-util/android-sdk-update-manager-16 ~amd64
+>=dev-ruby/archive-tar-minitar-0.5.2-r3 ~amd64
+>=dev-ruby/rake-0.8.7-r6 ~amd64
+
+>=app-emulation/vmware-modules-264.1 ~amd64
+>=app-emulation/vmware-workstation-8.0.1.528992-r2 ~amd64
+>=app-emulation/vmware-tools-8.8.1.528992 ~amd64
+>=app-dicts/qstardict-0.13.1 ~amd64
+=sys-apps/portage-2.2.0_alpha86 ** 
+>=media-sound/tuxguitar-1.2 ~amd64
+=sys-libs/libixp-0.5_p20110208-r2 ~amd64
+=app-text/foxitreader-1.1.0 ~amd64
+
+>=net-misc/teamviewer-7.0.9360 ~amd64
+>=www-client/dwb-2012.02.01 ** 
+=app-emulation/wine-1.5.1 ~amd64
+=app-emulation/winetricks-744 ~amd64
+>=app-text/calibre-0.8.46 ~amd64
+>=dev-libs/glib-2.32.1 ~amd64
+=net-libs/libsoup-2.38.0 ~amd64
+=x11-wm/musca-0.9.24_p20100226-r2 ~amd64
+=x11-misc/zim-0.56 ~amd64
+>=app-misc/tmux-1.5 ~amd64
+
+>=net-p2p/rtorrent-0.8.9 ~amd64
+>=net-libs/libtorrent-0.13.2 ~amd64
+
+=sys-apps/dbus-1.6.4 ~amd64
+>=sys-devel/clang-3.1-r2 ~amd64
+=sys-devel/llvm-3.1-r1 ~amd64
+=dev-util/patchelf-0.6 ~amd64
+#=sys-power/powertop-2.0 ~amd64
+>=sys-apps/pacman-4.0.1 ~amd64
+=sys-kernel/geek-sources-3.5.3 ~amd64
+>=app-pda/barry-0.17.1 ~amd64
+=dev-libs/nspr-4.9.2 ~amd64
+=dev-libs/nss-3.13.6 ~amd64
+#>=sys-fs/udev-180 **
+#>=virtual/udev-180 **
+>=sys-libs/pam-1.1.5 ~amd64 
+=x11-drivers/nvidia-drivers-310.19 ~amd64
+=media-libs/libpng-1.5.14 ~amd64
+=media-libs/harfbuzz-0.9.10 ~amd64
+>=media-video/avidemux-2.6.1 **
+>=x11-base/xorg-server-1.13.1 ~amd64

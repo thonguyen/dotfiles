@@ -1,0 +1,11 @@
+=dev-java/sat4j-pseudo-2.3.1 ~amd64
+# required by eclipse-sdk (argument)
+=dev-util/eclipse-sdk-3.7.1-r11 ~amd64
+# required by java-virtuals/jetty-server-6-r4::seden
+# required by dev-util/eclipse-sdk-3.7.1-r11::seden
+# required by eclipse-sdk (argument)
+=www-servers/jetty-bin-6.1.26-r4 ~amd64
+# required by dev-util/eclipse-sdk-3.7.1-r11::seden
+# required by eclipse-sdk (argument)
+=dev-java/asm-3.3.1 ~amd64
+

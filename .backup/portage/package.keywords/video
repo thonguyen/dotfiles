@@ -1,0 +1,4 @@
+=media-video/mpv-0.1.7 ~amd64
+>=media-video/libav-9.9 ~amd64
+>=media-video/ffmpeg-1.0 ~amd64
+>=virtual/ffmpeg-1 ~amd64

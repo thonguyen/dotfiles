@@ -1,0 +1,123 @@
+#sys-devel/gcc lto graphite
+www-client/firefox custom-cflags custom-optimization -pgo webm 
+media-video/mplayer X -a52 -aac alsa ass -cddb -cdio -dirac -dts -dv -dvd -dvdnav -enca -encode -faac -faad iconv -live mmx mp3 network opengl -osdmenu -quicktime -rar -real -rtc -schroedinger shm -speex -theora -toolame -tremor truetype -twolame unicode -vorbis x264 -xscreensaver xv xvi encode mmxext gtk 
+#media-video/mplayer2 X -a52 alsa ass -cdio -dts -dv -dvd -dvdnav -enca -faad iconv -jpeg -live mmx -mp3 network opengl -osdmenu -png -quicktime rar -rtc shm -speex sse sse2 ssse3 -theora truetype unicode -vorbis -xscreensaver xv -3dnow -3dnowext -aalib custom-cflags custom-cpuopts -ladspa -libcaca -lirc -mad -md5sum -mmxext -mng -nas -nut -oss -pnm -pulseaudio -pvr -radio 
+media-sound/mpd -oss alsa bzip2 curl fifo id3 -mad network unicode cue lame flac ogg -ffmpeg mpg123
+media-sound/ncmpcpp iconv threads unicode bash-completion curl taglib 
+app-text/poppler cxx -png lcms utils xpdf-header -abiword qt4
+net-im/centerim crypt irc jabber msn nls ssl yahoo -aim -icq jabber -msn
+net-fs/samba  acl client netapi readline smbclient
+#dev-lang/php apache2 cgi force-cgi-redirect mysql xml
+>=sys-fs/udev-171-r7 gudev extras devfs-compat old-hd-rules hwdb
+>=virtual/udev-197-r3 gudev hwdb
+sys-auth/consolekit policykit
+#media-libs/gd fontconfig truetype 
+dev-db/sqlite extensions
+dev-libs/boost system filesystem program_options thread test
+dev-java/lucene analyzers
+app-text/evince djvu
+media-sound/moc alsa flac mad
+app-text/ghostscript-gpl cups
+app-portage/eix zsh-completion
+media-libs/flac ogg
+
+media-libs/libpng apng
+
+x11-terms/rxvt-unicode 256-color -perl
+=sys-block/parted-2.3 device-mapper
+
+>=dev-libs/libxml2-2.7.8-r1 icu
+app-emulation/wine  alsa fontconfig gnutls -mp3 -openal
+
+>=x11-libs/wxGTK-2.8.11.0 tiff
+>=sys-auth/pambase-20101024 consolekit
+
+>=www-plugins/adobe-flash-11.0.1.129_rc201109061 -32bit -multilib
+net-misc/openssh -X 
+
+x11-libs/gtk+ vim-syntax
+>=x11-base/xorg-server-1.10.4 xvfb
+>=dev-lang/python-2.7.1-r1 sqlite
+x11-drivers/nvidia-drivers -multilib
+
+app-emulation/vmware-tools vmware_guest_windows vmware_guest_linux
+app-text/qstardict  plugin_stardict
+media-video/ffmpeg alsa custom-cflags mp3 vorbis libass x264 aac faac
+
+virtual/ffmpeg -mp3
+media-libs/opencv examples tiff gstreamer ffmpeg
+mail-client/mutt smtp imap gpg sasl sidebar
+app-admin/conky  X ncurses portmon hddtemp mpd nvidia thinkpad vim-syntax
+>=media-libs/libsdl-1.2.15 joystick
+www-client/chromium custom-cflags
+>=media-libs/gd-2.0.35-r3 truetype fontconfig
+>=media-libs/mesa-8.0.3 classic egl -gallium -llvm  nptl -shared-glapi -vdpau -g3dvl 
+app-text/enchant hunspell
+dev-util/boost-build python
+sys-libs/cracklib python
+sys-apps/usbutils python
+x11-libs/qt-script jit
+dev-libs/libxml2 python
+app-admin/conky math
+>=sys-libs/zlib-1.2.7 minizip
+>=dev-libs/elfutils-0.155 static-libs
+net-nds/openldap sasl
+app-portage/layman subversion git mercurial
+
+app-editors/vim python
+sys-devel/clang python
+
+media-gfx/imagemagick fftw
+media-libs/sdl-mixer mod modplug
+=dev-java/antlr-2.7.7-r2 java
+dev-vcs/rabbitvcs diff nautilus thunar 
+xfce-base/thunar dbus
+
+net-libs/webkit-gtk -aqua -coverage -debug -doc -geoloc -gstreamer -introspection jit spell -test -webgl webkit2 webgl
+=sys-devel/llvm-3.3-r1 python clang
+>=dev-python/PyQt4-4.9.6-r2 webkit svg
+app-pda/barry guide -opensync desktop
+>=dev-ml/lablgl-1.04-r1 glut
+#app-text/texlive-core xetex
+app-text/texlive  X png -cjk -context -detex -doc -dvi2tty -dvipdfm -epspdf -extra -games -graphics -humanities -jadetex -luatex -metapost -music -omega -pdfannotextractor -pstricks -publishers science -tex4ht -texi2html truetype xetex -xindy -xml
+app-text/texlive-core xetex
+#kde stuff
+dev-qt/qtcore qt3support
+dev-qt/qt3support accessibility
+dev-qt/qtsql qt3support mysql
+dev-qt/qtgui qt3support accessibility
+media-libs/phonon gstreamer
+media-plugins/gst-plugins-meta ogg vorbis
+dev-qt/qtdeclarative qt3support accessibility
+dev-qt/qtopengl qt3support
+dev-qt/qtsvg accessibility
+kde-base/kdelibs spell
+kde-base/okular crypt handbook jpeg pdf postscript tiff -aqua chm -debug djvu ebook
+=kde-base/kdelibs-4.10.5-r1 semantic-desktop
+dev-qt/qt-creator fakevim
+
+=dev-libs/soprano-2.9.2 dbus
+app-office/calligra kdepim
+=kde-base/kdepimlibs-4.10.5 semantic-desktop
+sys-kernel/gentoo-sources  experimental extras 
+
+media-video/mpv alsa -xscreensaver
+sys-block/gparted fat
+media-video/libav network -3dnow -3dnowext -aac -altivec -amr -avx -bindist -cdio cpudetection custom-cflags -debug -doc -faac -fdk -frei0r -gsm -ieee1394 -jack -jpeg2k -mmxext -mp3 -neon -openssl -opus -oss -pic -pulseaudio -rtmp -schroedinger -sdl -speex -static-libs -test -theora -tools -truetype v4l -vis -vorbis -vpx x264 xvid
+#media-sound/pulseaudio -X system-wide
+media-libs/libcanberra alsa
+x11-wm/xmonad -default-term
+x11-misc/xmobar mpd wifi
+
+
+=dev-qt/qtcore-5.2.0_beta1 icu
+=x11-libs/libxcb-1.9.1 xkb
+=dev-libs/libpcre-8.33 pcre16
+
+#netsurf
+>=net-libs/libdom-0.0.1 xml
+#end netsurf
+
+#bitlbee
+net-im/bitlbee gnutls libevent oscar plugins skype ssl yahoo
+#end bitlbee

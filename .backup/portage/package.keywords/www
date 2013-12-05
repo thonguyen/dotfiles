@@ -1,0 +1,27 @@
+>=www-plugins/adobe-flash-11.0.1.129_rc201109061 ~amd64
+>=www-client/firefox-6.0::gentoo ~amd64
+>=www-apps/redmine-2.2.4 ~amd64
+>=www-client/dwb-2013.03.30 ~amd64
+>=www-client/xombrero-1.4.0 ~amd64
+=www-client/uzbl-9999 **
+=www-client/jumanji-9999 **
+>=www-client/google-chrome-31.0.1650.16_beta1 ~amd64
+
+#netsurf
+=net-libs/libdom-0.0.1 ~amd64
+=www-client/netsurf-3.0-r1 ~amd64
+=dev-libs/libcss-0.2.0 ~amd64
+=media-libs/libsvgtiny-0.1.0 ~amd64
+=media-libs/libnsgif-0.1.0 ~amd64
+=dev-libs/libparserutils-0.1.2 ~amd64
+=media-libs/librosprite-0.1.0 ~amd64
+=media-libs/libnsbmp-0.1.0 ~amd64
+=net-libs/libhubbub-0.2.0 ~amd64
+=dev-libs/libwapcaplet-0.2.0 ~amd64
+#end netsurf
+
+#midori
+=dev-lang/vala-0.20.1 ~amd64
+=dev-libs/vala-common-0.22.0 ~amd64
+=www-client/midori-0.5.5 ~amd64
+#end midori

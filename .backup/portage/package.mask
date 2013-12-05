@@ -1,0 +1,5 @@
+#>x11-base/xorg-server-1.11.0
+#sys-fs/udev
+#=sys-fs/udev-171-r7
+>=sys-power/powertop-2.0
+#>=sys-boot/grub-2.0
