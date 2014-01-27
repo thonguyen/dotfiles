@@ -1,0 +1,38 @@
+# /etc/fstab: static file system information.
+#
+# noatime turns off atimes for increased performance (atimes normally aren't 
+# needed); notail increases performance of ReiserFS (at the expense of storage 
+# efficiency).  It's safe to drop the noatime options if you want and to 
+# switch between notail / tail freely.
+#
+# The root filesystem should have a pass number of either 0 or 1.
+# All other filesystems should have a pass number of 0 or greater than 1.
+#
+# See the manpage fstab(5) for more information.
+#
+
+# <fs>			<mountpoint>	<type>		<opts>		<dump/pass>
+
+/dev/sda5   /boot        ext4    noauto,noatime     			1 2
+/dev/sda6   /            ext4    discard,noatime,commit=300             0 1
+/dev/sda7   /home        ext4    discard,noatime,commit=300             0 2
+/dev/sda9   none         swap    discard,sw                   		0 0
+/dev/sda2   /mnt/data	 ext4    discard,noatime,commit=300		0 2
+
+/dev/sda8   /mnt/music	 ext4    discard,noatime,commit=300       	0 2
+
+#sdb
+#/dev/sdb2   /mnt/music2	 ext4    noatime              			0 2
+#/dev/sdb5   /mnt/data2	 ext4    noatime              			0 2
+
+/dev/cdrom  /mnt/cdrom   auto    noauto,user          			0 0
+
+proc        /proc        proc    defaults             			0 0
+shm         /dev/shm     tmpfs   nodev,nosuid,noexec  			0 0
+
+none 	    /var/tmp	 tmpfs size=3000M,nr_inodes=1M   			0 0
+
+tmpfs	    /tmp      	 tmpfs defaults,nodev,nosuid,mode=1777                 	0 0
+#tmpfs 	    /lock 	 tmpfs defaults,nodev,nosuid,noexec,mode=1777,size=10m 	0 0
+tmpfs       /run  	 tmpfs defaults,nodev,nosuid,noexec,mode=0755,size=10m 	0 0
+
