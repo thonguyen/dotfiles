@@ -1,0 +1,1 @@
+KCFLAGS="-O2 -march=native -fomit-frame-pointer -pipe" KCPPFLAGS="-O2 -march=native -pipe -fomit-frame-pointer" make -j5 && make modules_install 
