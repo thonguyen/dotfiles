@@ -10,6 +10,9 @@ so .pentadactyl/colors/kolor.penta
 :set hintkeys=asdfjkl;
 
 nnoremap j 5j
+"nmap -builtin j 5j
+nmap j 5j
+nmap k 5k
 nnoremap k 5k
 
 :set showtabline=never

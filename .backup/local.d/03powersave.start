@@ -1,0 +1,53 @@
+#!/bin/bash
+#echo min_power > /sys/class/scsi_host/host0/link_power_management_policy
+#echo min_power > /sys/class/scsi_host/host1/link_power_management_policy
+#echo min_power > /sys/class/scsi_host/host2/link_power_management_policy
+#echo min_power > /sys/class/scsi_host/host3/link_power_management_policy
+#echo min_power > /sys/class/scsi_host/host4/link_power_management_policy
+#echo min_power > /sys/class/scsi_host/host5/link_power_management_policy
+
+#echo -n 20 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
+#echo 10 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
+
+#disable wake on lan
+#ethtool -s eth0 wol d
+
+#Enable Audio HD powersave
+echo 1 > /sys/module/snd_hda_intel/parameters/power_save &
+echo Y > /sys/module/snd_hda_intel/parameters/power_save_controller &
+
+#Enable multi core power savings
+#echo 1 > /sys/devices/system/cpu/sched_smt_power_savings &
+
+#set scheduler
+echo noop > /sys/block/sda/queue/scheduler & 
+
+#set aspm
+echo powersave > /sys/module/pcie_aspm/parameters/policy sleep 60 &
+
+#set wireless power
+#iwconfig wlan0 power on
+#iwconfig wlan0 power timeout 500ms
+
+#runtime PM
+#for i in $(ls /sys/bus/{pci,i2c}/devices/*/power/control);do echo auto > $i;done
+for i in $(ls /sys/bus/pci/devices/*/power/control);do echo auto > $i;done
+#for i in /sys/bus/usb/devices/*/power/autosuspend; do echo 1 > $i; done
+#for i in /sys/bus/usb/devices/*/power/level; do echo auto > $i; done
+
+#set scaling_governor
+#echo ondemand > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+#echo ondemand > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
+#echo ondemand > /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor
+#echo ondemand > /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor
+#echo ondemand > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
+#echo ondemand > /sys/devices/system/cpu/cpu5/cpufreq/scaling_governor
+#echo ondemand > /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor
+#echo ondemand > /sys/devices/system/cpu/cpu7/cpufreq/scaling_governor
+#echo conservative | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+#echo 1 > /sys/devices/system/cpu/cpufreq/conservative/ignore_nice_load 
+#echo -n 40 > /sys/devices/system/cpu/cpufreq/conservative/down_threshold
+#echo -n 90 > /sys/devices/system/cpu/cpufreq/conservative/up_threshold
+#echo -n 10 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
+
+exit

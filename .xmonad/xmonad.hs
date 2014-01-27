@@ -50,8 +50,9 @@ myFocusedBorderColor = "#005577"
 --scratchpads stuff
 scratchpads :: NamedScratchpads
 scratchpads = [
-    NS "vimNote" "/usr/bin/urxvtc  -fn '-xos4-terminus-bold-*-*-*-16-*-*-*-*-iso10646-1,-misc-fixed-bold-r-normal--14-140-75-75-c-90-iso10646-1' -T vimNote -e vim ~/.mynotes" (title=? "vimNote") 
-    (customFloating $ W.RationalRect (1/90) (1/40) (1/3) (2/3)),
+   -- NS "vimNote" "/usr/bin/urxvtc  -fn '-xos4-terminus-bold-*-*-*-16-*-*-*-*-iso10646-1,-misc-fixed-bold-r-normal--14-140-75-75-c-90-iso10646-1' -T vimNote -e vim ~/.mynotes" (title=? "vimNote") 
+    NS "vimNote" "gvim --role notes note:todo" (role=? "notes") 
+    (customFloating $ W.RationalRect (1/90) (1/40) (2/3) (2/3)),
 --    NS "xpad" "/usr/bin/xpad -N -s" (className =? "xpad") defaultFloating,
     NS "kanban" "/usr/bin/urxvtc -T kanban -e vim /mnt/data2/tom/apps/Simple_Kanban.html" (title=? "kanban") defaultFloating,
     NS "top" "/usr/bin/urxvtc -T spHtop -e htop" (title=? "spHtop") 
@@ -61,7 +62,7 @@ scratchpads = [
         (customFloating $ W.RationalRect (1/100) (1/2) (5/9) (49/100)),
     NS "ncmpcpp" "/usr/bin/urxvtc -name spNcmpcpp -e ncmpcpp" (resource=? "spNcmpcpp")
         (customFloating $ W.RationalRect (5/9) (1/40) (4/9) (1/2)),
-    NS "dict" "/usr/bin/qstardict" (className =? "Qstardict") defaultFloating]
+    NS "dict" "/usr/bin/qstardict" (className =? "Qstardict") defaultFloating] where role = stringProperty "WM_WINDOW_ROLE"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -82,7 +83,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_p     ), namedScratchpadAction scratchpads "ncmpcpp")
     , ((modm,               xK_u     ), namedScratchpadAction scratchpads "rooter")
     , ((0,                  xK_Menu     ), namedScratchpadAction scratchpads "top")
-    , ((modm,               xK_v     ), spawn "/mnt/data2/tom/apps/Viber/Viber")
+    , ((modm,               xK_v     ), spawn "/home/tom/old/apps/vb/usr/share/viber/Viber")
     , ((modm,               xK_z     ), spawn "zim")
     , ((modm,               xK_t     ), spawn "kile")
     , ((modm,               xK_y     ), spawn "urxvtc -e sudo shutdown")
@@ -266,9 +267,8 @@ myEventHook = mempty
 myStartupHook = setWMName "LG3D" -- deek
 
 ------------------------------------------------------------------------
-myXmonadBar = "dzen2 -title-name dzenleft -slave-name dzenleft -x '0' -y '0' -w '480' -ta 'l' -fg '" ++ colorWhiteAlt ++ "' -bg '" ++ colorBlack ++ "' -fn '" ++ dzenFont ++ "'"
-myStatusBar = "dzen2 -title-name dzenright -slave-name dzenright -x '480' -w '800' -ta 'r' -bg '" ++ colorBlack ++ "' -y '0' -fn '" ++ dzenFont ++ "'"
---myStatusBar = "conky -c /home/tom/.conkyrcdzen| dzen2 -x '480' -w '780' -ta 'r' -bg '#1B1D1E' -y '0' -fn '-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*'"
+--myXmonadBar = "dzen2 -title-name dzenleft -slave-name dzenleft -x '0' -y '0' -w '480' -ta 'l' -fg '" ++ colorWhiteAlt ++ "' -bg '" ++ colorBlack ++ "' -fn '" ++ dzenFont ++ "'"
+--myStatusBar = "dzen2 -title-name dzenright -slave-name dzenright -x '480' -w '800' -ta 'r' -bg '" ++ colorBlack ++ "' -y '0' -fn '" ++ dzenFont ++ "'"
 
 
 --main = xmonad defaults
@@ -280,8 +280,8 @@ myStatusBar = "dzen2 -title-name dzenright -slave-name dzenright -x '480' -w '80
 --
 --main = xmonad $ kde4Config {
 main = do
-    dzenLeftBar <- spawnPipe myXmonadBar
-    dzenRightBar <- spawnPipe myStatusBar
+    -- dzenLeftBar <- spawnPipe myXmonadBar
+    -- dzenRightBar <- spawnPipe myStatusBar
     xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig {
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
@@ -300,7 +300,7 @@ main = do
         manageHook         = namedScratchpadManageHook scratchpads <+> myManageHook <+> manageDocks,
         handleEventHook    = myEventHook <+> docksEventHook,
 --        logHook            = myLogHook dzenLeftBar >> fadeInactiveLogHook 0xdddddddd,
-		logHook			   = myTopLeftLogHook dzenLeftBar <+> myTopRightLogHook dzenRightBar,
+		-- logHook			   = myTopLeftLogHook dzenLeftBar <+> myTopRightLogHook dzenRightBar,
         startupHook        = myStartupHook
     }
 --Bar

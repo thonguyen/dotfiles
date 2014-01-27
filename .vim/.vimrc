@@ -1,16 +1,140 @@
-call pathogen#infect()
-call pathogen#helptags()
-se nobackup
-se directory=~/.vim/swp,.
-se shiftwidth=4
-se sts=4
-se modelines=2
-se modeline
-se nocp
+execute pathogen#infect()
+set enc=utf-8
+set fenc=utf-8
+set termencoding=utf-8
+set nobackup
+set directory=~/.vim/swp,.
+set shiftwidth=4
+set sts=4
+set modelines=2
+set modeline
+set nocp
 set tabstop=4        " tab width is 4 spaces
 set shiftwidth=4     " indent also with 4 spaces
 set expandtab        " expand tabs to spaces
+"set linebreak        " break longline
+set textwidth=120
+"set lazyredraw
 
+" highlight matching braces
+set showmatch
+" intelligent comments
+set comments=sl:/*,mb:\ *,elx:\ */
+
+" incremental search that highlights results
+set incsearch
+set hlsearch
+
+" highlight current line
+set cursorline
+
+" Smart backspace
+set backspace=start,indent,eol
+
+" Set vimdiff to ignore whitespace
+set diffopt+=iwhite
+set diffexpr=
+
+set undofile
+set undodir=~/.vimundo
+
+" Stop warning me about leaving a modified buffer
+set hidden
+
+" Now that I use vim-paren-crosshairs, I need 256 colors in my console VIM
+set t_Co=256
+
+"mapping stuff
+"
+" in normal mode F2 will save the file
+nmap <F2> :w<CR>
+" in insert mode F2 will exit insert, save, enters insert again
+imap <F2> <ESC>:w<CR>i
+" switch between header/source with F4
+map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+
+" build using makeprg with <F7>
+map <F7> :make<CR>
+" build using makeprg with <S-F7>
+map <S-F7> :make clean all<CR>
+" goto definition with F12
+map <F12> <C-]>
+
+" Map SyntasticCheck to F6
+noremap <silent> <F6> :SyntasticCheck<CR>
+noremap! <silent> <F6> <ESC>:SyntasticCheck<CR>
+
+noremap <silent> <F10> :NERDTreeToggle<CR>
+noremap! <silent> <F10> <ESC>:NERDTreeToggle<CR>
+
+" map F3 and SHIFT-F3 to toggle spell checking                         
+nmap <F11> :setlocal spell spelllang=fr<CR>
+imap <F11> <ESC>:setlocal spell spelllang=fr<CR>i
+nmap <S-F11> :setlocal spell spelllang=<CR>
+imap <S-F11> <ESC>:setlocal spell spelllang=<CR>i
+
+" Ctrl-L clears the highlight from the last search
+noremap <C-l> :nohlsearch<CR><C-l>
+noremap! <C-l> <ESC>:nohlsearch<CR><C-l>
+
+" TAB and Shift-TAB in normal mode cycle buffers
+noremap <Tab> :bn<CR>
+noremap <S-Tab> :bp<CR>
+
+" Disable cursors (force myself to learn VI moves)
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+map <up> <nop>
+
+"imap <down> <nop>
+"imap <left> <nop>
+"imap <right> <nop>
+"imap <up> <nop>
+
+"fix azerty
+map <S-q> <S-a>
+map <&> <1>
+
+map j gj
+map k gk
+"NerdTree
+map t <C-w><C-w>
+"map <C-/> \cc
+
+"imap <C-/> <C-X><C-]>
+imap <C-@> <C-X><C-N>
+imap <C-o> <C-x><C-o>
+"Tcomment
+"nmap <C-/> <c-_><c-_>
+nnoremap <C-/> <C-_><C-_>
+
+" Much improved auto completion menus
+"set completeopt=menuone,longest,preview
+set completeopt=longest,menuone
+:inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+"vundle stuff
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'kien/ctrlp.vim'
+Bundle 'vim-scripts/a.vim'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'vim-scripts/tComment'
+"Bundle 'garbas/vim-snipmate'
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
+Bundle "honza/vim-snippets"
+Bundle 'xolox/vim-notes'
+Bundle 'xolox/vim-misc'
+Bundle 'vim-scripts/c.vim'
+Bundle 'vim-scripts/Align'
+Bundle 'vim-scripts/Txtfmt-The-Vim-Highlighter'
 
 if has("autocmd")
     filetype on
@@ -18,25 +142,6 @@ if has("autocmd")
     filetype plugin on
 endif
 
-" se autoindent
-se undofile
-se undodir=~/.vimundo
-"noremap <ESC>OP <F1>
-
-
-" auto-closes preview window after you select what to auto-complete with
-"autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-"autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
-
-"
-" maps NERDTree to F10
-"
-noremap <silent> <F10> :NERDTreeToggle<CR>
-noremap! <silent> <F10> <ESC>:NERDTreeToggle<CR>
-
-
-"
 " tells NERDTree to use ASCII chars
 " and to ignore some files
 "
@@ -57,150 +162,12 @@ if has("wildmenu")
     set wildignore+=*~,*.swp,*.tmp
 endif
 
-"
-" My attempt at easy navigation/creation of windows:
-"   Ctrl-Cursor keys to navigate open windows
-"   Ctrl-F12 to close current window
-" Also...
-"   f4 TO NAVigate to next compile/link/flake8 error
-"   F3 to navigate to next Syntastic error (first, invoke :Errors)
-"
-function! WinMove(key)
-  let t:curwin = winnr()
-  exec "wincmd ".a:key
-  " if (t:curwin == winnr())
-  "   " we havent moved
-  "   " Create window in that direction,
-  "   if (match(a:key,'[jk]')) "were we going up/down
-  "     wincmd v
-  "   else
-  "     wincmd s
-  "   endif
-  "   exec "wincmd ".a:key
-  " endif
-endfunction
-function! WinClose()
-  if &filetype == "man"
-    bd!
-  else
-    bd
-  endif
-endfunction
-
-"
-" In cmd mode, + and - vertically enlarge/shrink a split
-"
-"noremap  <silent> = :call WinMove('+')<CR>
-"noremap  <silent> - :call WinMove('-')<CR>
-"noremap  <silent> + :call WinMove('>')<CR>
-"noremap  <silent> _ :call WinMove('<')<CR>
-
-
-"
-" incremental search that highlights results
-"
-se incsearch
-se hlsearch
-" Ctrl-L clears the highlight from the last search
-noremap <C-l> :nohlsearch<CR><C-l>
-noremap! <C-l> <ESC>:nohlsearch<CR><C-l>
-
-
-"
-" Fix insert-mode cursor keys in FreeBSD
-"
-if has("unix")
-  let myosuname = system("uname")
-  if myosuname =~ "FreeBSD"
-    set term=cons25
-  elseif myosuname =~ "Linux"
-    set term=linux
-  endif
-endif
-
-
-"
-" Reselect visual block after indenting
-"
-"vnoremap < <gv
-"vnoremap > >gv
-
-
-"
-" Keep search pattern at the center of the screen
-"
-"nnoremap <silent> n nzz
-"nnoremap <silent> N Nzz
-"nnoremap <silent> * *zz
-"nnoremap <silent> # #zz
-
-
-"
-" Make Y behave like other capitals
-"
-"noremap Y y$
-
-
-"
-" Force Saving Files that Require Root Permission
-"
-"cmap w!! %!sudo tee > /dev/null %
-
-"
-" Syntastic - Ignore 'too long lines' from flake8 report
-"
-"let g:syntastic_python_checker_args = "--ignore=E501,E225"
-
-
-"
-"when the vim window is resized resize the vsplit panes as well
-"
-"au VimResized * exe "normal! \<c-w>="
-
-
-"
-" TAB and Shift-TAB in normal mode cycle buffers
-"
-noremap <Tab> :bn<CR>
-noremap <S-Tab> :bp<CR>
-
-
-"
 " Syntax-coloring of files
-"
 syntax on
-"colorscheme elflord
-"colorscheme skittles_dark 
-if expand('%:t')==".mynotes" 
-    colorscheme note 
-else
-    colorscheme zenburn
-endif
 "colorscheme wombat256
-"
-" Disable cursors (force myself to learn VI moves)
-"
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-map <up> <nop>
 
-"imap <down> <nop>
-"imap <left> <nop>
-"imap <right> <nop>
-"imap <up> <nop>
 
-"fix azerty
-map <S-q> <S-a>
-map <&> <1>
-"
-" highlight current line
-"
-set cursorline
-
-"
 " always show the status line
-"
 set laststatus=2
 set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
 "              | | | | |  |   |      |  |     |    |
@@ -219,90 +186,16 @@ set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
 "              +-- full path to file in the buffer
 
 "
-" But we must be able to hide them if we want to
-"
-function! TabsAndColumn80AndNumbers ()
-    "
-    " tabs must be visible
-    "
-    set list!
-    set number!
-    set listchars=tab:>-,trail:-
-    if exists('+colorcolumn')
-        "
-        " Show me column 80
-        "
-        if &colorcolumn == ""
-            set colorcolumn=80
-        else
-            set colorcolumn=
-        endif
-    endif
-endfunction
-nnoremap <Esc>[20~ :call TabsAndColumn80AndNumbers()<CR>
-nnoremap <F9> :call TabsAndColumn80AndNumbers()<CR>
 
-"
-" Smart backspace
-"
-set backspace=start,indent,eol
 
-"
-" Avoid TABs like the plague
-"
-set expandtab
-" Set vimdiff to ignore whitespace
-set diffopt+=iwhite
-set diffexpr=
 
-"
-" Much improved auto completion menus
-"
-set completeopt=menuone,longest,preview
-
-"
-" Use C-space for omni completion in insert mode.
-" Disabled currently, because I am testing the
-" 'YouCompleteMe' plugin...
-"
-"inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
-"            \ "\<lt>C-n>" :
-"            \ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
-"            \ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
-"            \ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
-"imap <C-@> <C-Space>
-
-"
-" Stop warning me about leaving a modified buffer
-"
-set hidden
-
-"
-" Show command as I type it
-"
-"set showcmd
-
-"
-" Now that I use vim-paren-crosshairs, I need 256 colors in my console VIM
-"
-set t_Co=256
-
-"
 " After 'f' in normal mode, I always mistype 'search next' - use space for ;
-"
 noremap <space> ;
 
-"
 " Manpage for word under cursor via 'K' in command mode
-"
 runtime ftplugin/man.vim
 noremap <buffer> <silent> K :exe "Man" expand('<cword>') <CR>
 
-"
-" Map SyntasticCheck to F6
-"
-noremap <silent> <F6> :SyntasticCheck<CR>
-noremap! <silent> <F6> <ESC>:SyntasticCheck<CR>
 
 let g:syntastic_mode_map = {
     \ 'mode': 'active',
@@ -310,51 +203,42 @@ let g:syntastic_mode_map = {
     \ 'passive_filetypes': ['cpp', 'c'] }
     "\ assive_filetypes': ['python', 'cpp', 'c'] }
 
-"
 " Now that I use the CtrlP plugin, a very useful shortcut is to open
 " an XTerm in the folder of the currently opened file:
-"
-noremap <silent> <F2> :!urxvtc -e "cd %:p:h ; zsh" &<CR><CR>
-noremap <silent> <Esc>OQ :!urxvtc -e "cd %:p:h ; zsh" &<CR><CR>
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_clear_cache_on_exit = 0
+"noremap <silent> <F2> :!urxvtc -e "cd %:p:h ; zsh" &<CR><CR>
+"noremap <silent> <Esc>OQ :!urxvtc -e "cd %:p:h ; zsh" &<CR><CR>
+"let g:ctrlp_working_path_mode = 0
+"let g:ctrlp_clear_cache_on_exit = 0
 
-"
 " Powerline settings
-"
 let g:Powerline_stl_path_style = 'short'
 
-"
-" Language-specific section
-"
-
-"
-" For C and C++
-"
-    
-" libclang use is mandatory now
-"
-"let g:clang_use_library = 1
-let g:clang_use_library = 1
-"set g:clang_library_path = /usr/lib64/llvm/libclang.so
-
-" map F3 and SHIFT-F3 to toggle spell checking                         
-nmap <F11> :setlocal spell spelllang=fr<CR>
-imap <F11> <ESC>:setlocal spell spelllang=fr<CR>i
-nmap <S-F11> :setlocal spell spelllang=<CR>
-imap <S-F11> <ESC>:setlocal spell spelllang=<CR>i
-set pastetoggle=<F2>
+"Auto toggle paste when insert buffer
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+function! XTermPasteBegin()
+    set pastetoggle=<Esc>[201~
+    set paste
+    return ""
+endfunction
 
 
-map j gj
-map k gk
-"NerdTree
-map t <C-w><C-w>
-map <C-/> \cc
 
-"imap <C-/> <C-X><C-]>
-imap <C-@> <C-X><C-N>
-imap <C-o> <C-x><C-o>
+if has("gui_running")
+    set guitablabel=%-0.12t%M
+    set guioptions-=T
+    set guioptions-=r
+    set guioptions-=L
+    set guioptions+=a
+    set guioptions-=m
+    set listchars=tab:▸\ ,eol:¬ " Invisibles using the Textmate style
+    set guifont=monospace\ 9 
+    set background=light
+    " colorscheme solarized
+    colorscheme jellybeans
+endif
+
 
 au BufNewFile,BufRead *.c,*.cc,*.cpp,*.h call SetupCandCPPenviron()
 function! SetupCandCPPenviron()
@@ -363,9 +247,7 @@ function! SetupCandCPPenviron()
     "
     set path+=/usr/include/c++/**
 
-    "
     " Tags
-    "
     " If I ever need to generate tags on the fly, I uncomment this:
     noremap <C-F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
     set tags+=/usr/include/tags
@@ -382,3 +264,32 @@ function! SetupCandCPPenviron()
     "
     noremap <buffer> <silent> K :exe "Man" 3 expand('<cword>') <CR>
 endfunction
+
+augroup vimrc_autocmds
+  autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
+  autocmd BufEnter * match OverLength /\%120v.*/
+augroup END
+
+
+if expand('%:t')=="note:todo" 
+    colorscheme slate 
+    set guifont=monaco 9 
+else
+    "colorscheme zenburn
+    colorscheme jellybeans
+endif
+let g:ctrlp_map = '<c-p>'
+
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=1
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+let g:tcommentModeExtra='>>'
+let g:tcommentOpModeExtra='>>'
+
+
+let g:notes_list_bullets=['•', '◦', '▸', '▹', '▪', '▫']
+let g:notes_tab_indents=1
+let g:notes_directories=['~/.notes']
