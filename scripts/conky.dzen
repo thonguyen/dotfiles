@@ -1,0 +1,11 @@
+#!/bin/zsh
+FG='#aaaaaa'
+BG='#1a1a1a'
+pdzen=`pidof dzen2`
+if [[ -z "$pdzen" ]]
+then
+    conky -c /home/tom/.conkyrcdzen| dzen2 -fn "-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*" -ta r -bg $BG &
+else
+    killall dzen2
+fi
+exit 0

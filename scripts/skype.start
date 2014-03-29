@@ -1,0 +1,4 @@
+#!/bin/sh
+/home/tom/bin/skype-sync
+skype&
+exit 0

@@ -1,0 +1,30 @@
+background no
+font -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*
+update_interval 2.0
+total_run_times 1 
+#total_run_times 0 
+own_window no 
+own_window_colour black
+#default_bar_size 0 6
+#own_window_type panel
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 1280 3
+draw_shades no
+draw_outline no
+draw_borders no
+border_width 1
+default_color darkgray
+default_outline_color darkgray
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+#net_avg_samples 2
+override_utf8_locale yes
+out_to_x no 
+out_to_ncurses no 
+out_to_console yes 
+out_to_stderr no 
+
+TEXT
+${time %a %b %d %H:%M}  $battery $battery_time ${acpitemp}C ${exec cat /proc/acpi/ibm/fan| sed '2!d'| awk '{print $2}'}RPM ${mem}/$memmax,${memperc}% $loadavg ${if_existing /home/tom/.mpd}[MPD $mpd_status] [$mpd_artist - $mpd_title]$endif

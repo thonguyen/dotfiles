@@ -1,0 +1,12 @@
+#!/bin/zsh
+app=firefox
+echo "$(ps -C firefox)"
+if [ -z "$(ps -C firefox)" ]
+    then
+        bspc use Two
+        firefox&
+    else
+        bspc use Two
+    fi
+
+exit 0

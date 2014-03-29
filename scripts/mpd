@@ -1,0 +1,14 @@
+#!/bin/bash
+
+MPD_CONFIG=/home/tom/.mpd
+if [[ ! -e /home/tom/.mpd/mpd.pid ]]; then
+
+    if [[ ! -d /home/tom/.mpd ]]; then
+        /home/tom/bin/mpd-sync
+    fi    
+    mpd
+    ncmpcpp play
+    scmpc
+else    
+    ncmpcpp toggle
+fi    

@@ -1,0 +1,4 @@
+#!/bin/zsh
+conky -c /home/tom/.conkyrc-dmenu | dmenu -fn "-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*" -nb "#000000" -nf "#bbbbbb" -sb "#000000" -sf "#eeeeee"
+
+exit 0

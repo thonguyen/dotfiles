@@ -1,0 +1,3 @@
+echo -e "use im\nonly\nhsplit 2/3\nrfocus\nexec /home/tom/bin/skype-sync\nexec skype" | musca -i
+bspc use Three
+

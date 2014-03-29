@@ -1,0 +1,15 @@
+#!/bin/zsh 
+
+set -o nounset                              # Treat unset variables as an error
+
+m=$(date +%m)
+h=$(date +%H)
+d=$(date +%d)
+echo $m$h
+yesterday=$(date -d"yesterday" +%d)
+mplayer $( for (( i = 0 ; i <= 9; i++ )); do echo http://telechargement.rfi.fr.edgesuite.net/rfi/francais/audio/journaux/r001/journal_international_0"$i"h00_-_0"$i"h10_tu_2013"$m$d".mp3; done)
+mplayer $( for (( i = 9 ; i <= $h; i++ )); do echo http://telechargement.rfi.fr.edgesuite.net/rfi/francais/audio/journaux/r001/journal_international_"$i"h00_-_"$i"h10_tu_2013"$m$d".mp3; done)
+#    axel http://telechargement.rfi.fr.edgesuite.net/rfi/francais/audio/journaux/r001/journal_international_00h30_-_00h33_tu_2013"$i".mp3
+#hier
+mplayer $( for (( i = 0 ; i <= 9; i++ )); do echo http://telechargement.rfi.fr.edgesuite.net/rfi/francais/audio/journaux/r001/journal_international_0"$i"h00_-_0"$i"h10_tu_2013"$m$yesterday".mp3; done)
+mplayer $( for (( i = 10 ; i <= 23; i++ )); do echo http://telechargement.rfi.fr.edgesuite.net/rfi/francais/audio/journaux/r001/journal_international_"$i"h00_-_"$i"h10_tu_2013"$m$yesterday".mp3; done)
