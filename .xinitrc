@@ -1,6 +1,6 @@
 #~/.zshrc
 xset fp+ /usr/share/fonts/terminus 
-#xbindkeys&
+xbindkeys&
 if [ -f $HOME/.Xmodmap ]; then
     /usr/bin/xmodmap $HOME/.Xmodmap
 fi

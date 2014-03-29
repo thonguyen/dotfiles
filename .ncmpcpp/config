@@ -8,7 +8,7 @@
 ## set it in order to make tag editor and renaming files work properly
 mpd_host = "localhost"
 mpd_port = "6600"
-mpd_music_dir = "/mnt/music/music"
+mpd_music_dir = "/mnt/data/music"
 mpd_connection_timeout = "5"
 #mpd_crossfade_time = "1"
 #mpd_communication_mode = "notifications" (polling/notifications)

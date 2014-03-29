@@ -5,16 +5,16 @@ set header_cache    = '~/.mutt/.cache/headercache'
 set message_cachedir= '~/.mutt/.cache/messagecache'
 set certificate_file='~/.mutt/.cache/certificates'
 
-set folder='~/old/.maildir'                                                                                                                                     
-set spoolfile='~/old/.maildir/'                                                                                                                                  
-set record='~/old/.maildir-sent/'
+set folder='~/.mutt/.maildir'
+set spoolfile='~/.mutt/.maildir/'
+set record='~/.mutt/.maildir-sent/'
 
 set read_inc  = 100
 set mail_check= 90
 set timeout   = 15
 set beep_new
 
-set tmpdir           ='~/old/.tmp'
+set tmpdir           ='~/.mutt/.tmp'
 set mailcap_path     ='~/.mutt/config/mailcap'
 set alias_file       ='~/.mutt/alias'
 set abort_nosubject  = ask-yes
@@ -25,8 +25,9 @@ set mark_old         = no
 set sort             = threads
 set sort_aux         = reverse-last-date-received
 set pager_index_lines= 15
+set mime_forward = ask-no
 
-set mailcap_path="~/.mailcap"
+set mailcap_path="~/.mutt/.mailcap"
 auto_view text/html
 
 

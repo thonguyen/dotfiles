@@ -10,7 +10,7 @@
 # be disabled and audio files will only be accepted over ipc socket (using
 # file:// protocol) or streaming files over an accepted protocol.
 #
-music_directory		"/mnt/music/music"
+music_directory		"/mnt/data/music"
 #
 # This setting sets the MPD internal playlist directory. The purpose of this
 # directory is storage for playlists created by MPD. The server will use 
@@ -160,7 +160,6 @@ save_absolute_paths_in_playlists	"yes"
 #
 ###############################################################################
 
-
 # Input #######################################################################
 #
 
@@ -189,12 +188,13 @@ input {
 audio_output {
 	type		    "alsa"
 	name		    "HDA Intel"
-	device		    "hw:0,0"	# optional
-	format		    "44100:16:2"	# optional
+	#device		    "hw:0,0"	# optional
+#	format		    "44100:16:2"	# optional
 #    mixer_device	"default"	# optional
 #    options         "dev=dmixer"
 #    device          "plug:dmix" # Both lines cause MPD to output to dmix.
 #    mixer_control	"Master"		# optional
+    mixer_control	"Master"		# optional
     use_mmap        "yes"    
     auto_resample   "no"
 #	mixer_index	"0"		# optional
@@ -355,7 +355,7 @@ audio_buffer_size		"16384"
 # beginning to play. Increasing this reduces the chance of audio file skipping, 
 # at the cost of increased time prior to audio playback.
 #
-#buffer_before_play		"10%"
+buffer_before_play		"100%"
 #
 ###############################################################################
 

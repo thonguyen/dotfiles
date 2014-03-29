@@ -5,7 +5,7 @@ fi
 #------------------------------
 ## Variables
 ##------------------------------
-#export EDITOR="vim"
+export EDITOR="vim"
 #export JAVA_HOME="/usr/lib/jvm/java-6-sun"
 #export PATH=/home/home/lib/android-sdk-linux_86:/usr/local/bin:$JAVA_HOME/bin:$PATH
 #export GTK_IM_MODULE=ibus
