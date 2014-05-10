@@ -7,8 +7,8 @@ if [[ ! -e /home/tom/.mpd/mpd.pid ]]; then
         /home/tom/bin/mpd-sync
     fi    
     mpd
-    ncmpcpp play
+    mpc play
     scmpc
 else    
-    ncmpcpp toggle
+    mpc toggle
 fi    
