@@ -1,4 +1,3 @@
-execute pathogen#infect()
 set enc=utf-8
 set fenc=utf-8
 set termencoding=utf-8
@@ -116,31 +115,30 @@ set completeopt=longest,menuone
 
 "vundle stuff
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'kien/ctrlp.vim'
-Bundle 'vim-scripts/a.vim'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'vim-scripts/tComment'
-"Bundle 'garbas/vim-snipmate'
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
-Bundle "honza/vim-snippets"
-Bundle 'xolox/vim-notes'
-Bundle 'xolox/vim-misc'
-Bundle 'vim-scripts/c.vim'
-Bundle 'vim-scripts/Align'
-Bundle 'vim-scripts/Txtfmt-The-Vim-Highlighter'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'Valloric/YouCompleteMe'
+"Plugin 'kien/ctrlp.vim'
+Plugin 'vim-scripts/a.vim'
+"Plugin 'Lokaltog/vim-easymotion'
+Plugin 'vim-scripts/tComment'
+"Plugin 'garbas/vim-snipmate'
+"Plugin 'MarcWeber/vim-addon-mw-utils'
+"Plugin 'tomtom/tlib_vim'
+"Plugin 'garbas/vim-snipmate'
+"Plugin 'honza/vim-snippets'
+"Plugin 'xolox/vim-notes'
+"Plugin 'xolox/vim-misc'
+"Plugin 'vim-scripts/c.vim'
+Plugin 'vim-scripts/Align'
+"Plugin 'vim-scripts/Txtfmt-The-Vim-Highlighter'
+"Plugin 'gerw/vim-latex-suite'
+Plugin 'scrooloose/nerdtree'
 
-if has("autocmd")
-    filetype on
-    filetype indent on
-    filetype plugin on
-endif
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 " tells NERDTree to use ASCII chars
 " and to ignore some files
@@ -293,3 +291,7 @@ let g:tcommentOpModeExtra='>>'
 let g:notes_list_bullets=['•', '◦', '▸', '▹', '▪', '▫']
 let g:notes_tab_indents=1
 let g:notes_directories=['~/.notes']
+
+"latex suite
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor='latex'

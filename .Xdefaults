@@ -12,6 +12,7 @@ URxvt.scrollBar_floating: false
 #urxvt*boldFont:    -xos4-terminus-bold-*-*-*-16-*-*-*-*-*-*, -misc-fixed-bold-r-normal--14-140-75-75-c-90-iso10646-1
 URxvt*font:        -xos4-terminus-medium-*-*-*-16-*-*-*-*-iso10646-1, -misc-fixed-medium-r-normal--14-140-75-75-c-90-iso10646-1
 URxvt*boldFont:    -xos4-terminus-bold-*-*-*-16-*-*-*-*-iso10646-1, -misc-fixed-bold-r-normal--14-140-75-75-c-90-iso10646-1
+
 #urxvt*font:        -misc-fixed-medium-r-normal--14-140-75-75-c-90-iso10646-1
 #urxvt*boldFont:    -misc-fixed-bold-r-normal--14-140-75-75-c-90-iso10646-1
 XTerm*oldXtermFKeys: true

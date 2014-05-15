@@ -36,7 +36,7 @@ scratchpads = [
    -- NS "vimNote" "/usr/bin/urxvtc  -fn '-xos4-terminus-bold-*-*-*-16-*-*-*-*-iso10646-1,-misc-fixed-bold-r-normal--14-140-75-75-c-90-iso10646-1' -T vimNote -e vim ~/.mynotes" (title=? "vimNote") 
     NS "vimNote" "gvim --role notes note:todo" (role=? "notes") 
     (customFloating $ W.RationalRect (0) (0) (1/2) (4/5)),
---    NS "xpad" "/usr/bin/xpad -N -s" (className =? "xpad") defaultFloating,
+    NS "xpad" "/usr/bin/xpad -N -s -t" (className =? "xpad") defaultFloating,
     NS "kanban" "/usr/bin/urxvtc -T kanban -e vim /mnt/data2/tom/apps/Simple_Kanban.html" (title=? "kanban") defaultFloating,
     NS "top" "/usr/bin/urxvtc -T spHtop -e htop" (title=? "spHtop") 
         (customFloating $ W.RationalRect (3/5) (2/3) (2/5) (1/3)),
@@ -63,7 +63,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_s     ), namedScratchpadAction scratchpads "vimNote")
     , ((modm,               xK_d     ), namedScratchpadAction scratchpads "dict")
     , ((modm,               xK_w     ), namedScratchpadAction scratchpads "tasque")
-    , ((modm,               xK_x     ), namedScratchpadAction scratchpads "kanban")
+    , ((modm,               xK_x     ), namedScratchpadAction scratchpads "xpad")
     , ((modm,               xK_p     ), namedScratchpadAction scratchpads "ncmpcpp")
     , ((modm,               xK_u     ), namedScratchpadAction scratchpads "rooter")
     , ((0,                  xK_Menu     ), namedScratchpadAction scratchpads "top")
