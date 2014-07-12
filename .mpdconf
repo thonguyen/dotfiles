@@ -78,6 +78,7 @@ group           "tom"
 # For network
 #bind_to_address		"localhost"
 bind_to_address		"127.0.0.1"
+#bind_to_address		"10.10.0.1"
 
 #
 # And for Unix Socket
@@ -188,13 +189,13 @@ input {
 audio_output {
 	type		    "alsa"
 	name		    "HDA Intel"
-	#device		    "hw:0,0"	# optional
-#	format		    "44100:16:2"	# optional
+	device		    "hw:0,0"	# optional
+	format		    "44100:16:2"	# optional
 #    mixer_device	"default"	# optional
 #    options         "dev=dmixer"
 #    device          "plug:dmix" # Both lines cause MPD to output to dmix.
 #    mixer_control	"Master"		# optional
-    mixer_control	"Master"		# optional
+#    mixer_control	"Master"		# optional
     use_mmap        "yes"    
     auto_resample   "no"
 #	mixer_index	"0"		# optional

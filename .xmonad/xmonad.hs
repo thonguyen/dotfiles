@@ -12,6 +12,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 import XMonad.Actions.WindowGo
 import XMonad.Hooks.EwmhDesktops --fix openoffice squeezing
+import XMonad.Hooks.SetWMName
 
 myTerminal      = "urxvtc"
 
@@ -39,13 +40,13 @@ scratchpads = [
     NS "xpad" "/usr/bin/xpad -N -s -t" (className =? "xpad") defaultFloating,
     NS "kanban" "/usr/bin/urxvtc -T kanban -e vim /mnt/data2/tom/apps/Simple_Kanban.html" (title=? "kanban") defaultFloating,
     NS "top" "/usr/bin/urxvtc -T spHtop -e htop" (title=? "spHtop") 
-        (customFloating $ W.RationalRect (3/5) (2/3) (2/5) (1/3)),
+        (customFloating $ W.RationalRect (55/100) (1/2) (45/100) (1/2)),
     NS "tasque" "/usr/bin/tasque" (className =? "Tasque")
     (customFloating $ W.RationalRect (0) (0) (1/2) (4/5)),
     NS "rooter" "/usr/bin/urxvtc -name rootTerm -e sudo -i" (resource=? "rootTerm")
         (customFloating $ W.RationalRect (1/2) (1/4) (1/2) (3/4)),
-    NS "ncmpcpp" "/usr/bin/urxvtc -name spNcmpcpp -e ncmpcpp" (resource=? "spNcmpcpp")
-        (customFloating $ W.RationalRect (5/9) (1/40) (4/9) (1/2)),
+    NS "ncmpc" "/usr/bin/urxvtc -name spNcmpc -e ncmpc" (resource=? "spNcmpc")
+        (customFloating $ W.RationalRect (55/100) (0) (45/100) (2/3)),
     NS "dict" "/usr/bin/goldendict" (className =? "Goldendict") defaultFloating] where role = stringProperty "WM_WINDOW_ROLE"
 
 ------------------------------------------------------------------------
@@ -64,7 +65,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_d     ), namedScratchpadAction scratchpads "dict")
     , ((modm,               xK_w     ), namedScratchpadAction scratchpads "tasque")
     , ((modm,               xK_x     ), namedScratchpadAction scratchpads "xpad")
-    , ((modm,               xK_p     ), namedScratchpadAction scratchpads "ncmpcpp")
+    , ((modm,               xK_p     ), namedScratchpadAction scratchpads "ncmpc")
     , ((modm,               xK_u     ), namedScratchpadAction scratchpads "rooter")
     , ((0,                  xK_Menu     ), namedScratchpadAction scratchpads "top")
     , ((modm,               xK_v     ), spawn "/home/tom/apps/vb/usr/share/viber/Viber")
@@ -80,6 +81,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0,             0x1008ff15    ), spawn "mpc stop")
     , ((0,             0x1008ff16    ), spawn "mpc prev")
     , ((0,             0x1008ff17    ), spawn "mpc next")
+    --, ((0,             0x1008ff13    ), spawn "/usr/bin/pulseaudio-ctl up")
+    --, ((0,             0x1008ff11    ), spawn "/usr/bin/pulseaudio-ctl down")
+    --, ((0,             0x1008ff12    ), spawn "/usr/bin/pulseaudio-ctl mute")
     , ((0,             0x1008ff13    ), spawn "amixer -q sset Master 2+")
     , ((0,             0x1008ff11    ), spawn "amixer -q sset Master 2-")
     , ((0,             0x1008ff12    ), spawn "amixer -q sset Master toggle")
@@ -245,8 +249,8 @@ myEventHook = mempty
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
-myStartupHook = return ()
---myStartupHook = ewmhDesktopsStartup >> setWMName "LG3D" -- deek
+--myStartupHook = return ()
+myStartupHook = ewmhDesktopsStartup >> setWMName "LG3D" -- deek
 
 ------------------------------------------------------------------------
 

@@ -11,6 +11,8 @@ urxvtd -q -o -f
 #redshift&
 #sync firefox profile to ram disk
 ~/bin/firefox-sync&
+#background image 
+feh --bg-fill if2.jpg
 #~/bin/luakit-sync&
 #~/bin/dwb-sync&
 #exec awesome
