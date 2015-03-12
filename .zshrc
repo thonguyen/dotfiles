@@ -5,16 +5,21 @@ fi
 #------------------------------
 ## Variables
 ##------------------------------
-export EDITOR="vim"
+export EDITOR="/usr/bin/vim"
 #export JAVA_HOME="/usr/lib/jvm/java-6-sun"
 #export PATH=/home/home/lib/android-sdk-linux_86:/usr/local/bin:$JAVA_HOME/bin:$PATH
 #export GTK_IM_MODULE=ibus
 #export XMODIFIERS="@im=ibus"
 #export QT_IM_MODULE=ibus
 
+#x-unikey
+#export XMODIFIERS="@im=unikey"
+#export GTK_IM_MODULE=xim
+#export QT_IM_MODULE=xim
+
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/omnetpp-4.2.1/lib
 #export PATH=$PATH:/usr/lib64/llvm/libclang.so
-#export PATH=$PATH:/opt/omnetpp-4.2.1/bin
+export PATH=$PATH:/opt/vmware/bin
 export TCL_LIBRARY=/usr/lib/tcl8.5
 
 export LD_LIBRARY_PATH=/usr/lib/llvm/:$LD_LIBRARY_PATH
@@ -191,10 +196,12 @@ export MOZ_DISABLE_PANGO=1
 export BSPWM_SOCKET=/tmp/bspwm-socket
 export XDG_CONFIG_HOME=~/.config
 #export http_proxy=127.0.0.1:8123
-export JAVA_HOME=/usr/lib/jvm/icedtea-bin-6
+#export JAVA_HOME=/usr/lib/jvm/icedtea-bin-6
 export GAMA=/home/tom/old/tool/gama
 export PATH=$PATH:$JAVA_HOME/bin:$GAMA
-#export PATH=$HOME/.cabal/bin:$PATH
+export _JAVA_AWT_WM_NONREPARENTING=1
+export AWT_TOOLKIT=MToolkit
+export PATH=$HOME/.cabal/bin:$PATH
 
 #Show progress while file is copying
 

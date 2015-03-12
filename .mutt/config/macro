@@ -1,2 +1,0 @@
-macro index <f3> '<change-folder>imaps://thonv133@imap.gmail.com:993<enter>'
-macro index <f2> '<change-folder>imaps://nvtho@imap.ifi.edu.vn:993<enter>'

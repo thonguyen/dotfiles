@@ -134,8 +134,9 @@ Plugin 'vim-scripts/tComment'
 "Plugin 'vim-scripts/c.vim'
 Plugin 'vim-scripts/Align'
 "Plugin 'vim-scripts/Txtfmt-The-Vim-Highlighter'
-"Plugin 'gerw/vim-latex-suite'
+Plugin 'gerw/vim-latex-suite'
 Plugin 'scrooloose/nerdtree'
+Plugin 'tomasr/molokai'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -295,3 +296,8 @@ let g:notes_directories=['~/.notes']
 "latex suite
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor='latex'
+"cycle through keywords
+set iskeyword+=:
+let g:Tex_DefaultTargetFormat = 'pdf'
+"let g:Tex_CompileRule_pdf = 'latexmk -pdf -pv -g'
+"g:Tex_CompileRule_pdf 'pdflatex -interaction=nonstopmode $*'

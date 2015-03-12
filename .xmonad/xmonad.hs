@@ -7,12 +7,18 @@ import XMonad.ManageHook
 import XMonad.Hooks.ManageDocks
 
 import XMonad.Layout.NoBorders ( noBorders, smartBorders )
+import XMonad.Layout.TwoPane
+import XMonad.Actions.RotSlaves
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 import XMonad.Actions.WindowGo
-import XMonad.Hooks.EwmhDesktops --fix openoffice squeezing
+--import XMonad.Hooks.EwmhDesktops --fix openoffice squeezing
 import XMonad.Hooks.SetWMName
+
+--import Data.Maybe (fromMaybe)
+--import XMonad.Actions.ShowText
+--import XMonad.Util.Loggers (logLayout)
 
 myTerminal      = "urxvtc"
 
@@ -25,7 +31,8 @@ myBorderWidth   = 1
 myModMask       = mod4Mask
 
 myWorkspaces :: [String]
-myWorkspaces = ["shell","web","work","doc","5","6","7","8","9"]
+myWorkspaces = ["shell","web","work","doc","5","6","7","8","9","Note","Something"]
+
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -45,11 +52,10 @@ scratchpads = [
     (customFloating $ W.RationalRect (0) (0) (1/2) (4/5)),
     NS "rooter" "/usr/bin/urxvtc -name rootTerm -e sudo -i" (resource=? "rootTerm")
         (customFloating $ W.RationalRect (1/2) (1/4) (1/2) (3/4)),
-    NS "ncmpc" "/usr/bin/urxvtc -name spNcmpc -e ncmpc" (resource=? "spNcmpc")
+    NS "ncmpc" "/usr/bin/urxvtc -name spNcmpc -e ncmpcpp" (resource=? "spNcmpc")
         (customFloating $ W.RationalRect (55/100) (0) (45/100) (2/3)),
     NS "dict" "/usr/bin/goldendict" (className =? "Goldendict") defaultFloating] where role = stringProperty "WM_WINDOW_ROLE"
 
-------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
@@ -61,39 +67,52 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((mod1Mask,               xK_F2     ), spawn "dmenu_run -fn '-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*'")
     --, ((modm,               xK_i     ), spawn "ibus-daemon --xim --panel=disable")
     , ((modm,               xK_f     ), runOrRaise "firefox" (className =? "Firefox"))
-    , ((modm,               xK_s     ), namedScratchpadAction scratchpads "vimNote")
+    , ((modm,               xK_w     ), runOrRaise "/home/tom/scripts/chromium.start" (className =? "Chromium-browser"))
+    --, ((modm,               xK_s     ), namedScratchpadAction scratchpads "vimNote")
+    , ((modm,               xK_s     ), runOrRaise "/home/tom/scripts/skype.start" (className =? "Skype"))
     , ((modm,               xK_d     ), namedScratchpadAction scratchpads "dict")
-    , ((modm,               xK_w     ), namedScratchpadAction scratchpads "tasque")
+    --, ((modm,               xK_w     ), namedScratchpadAction scratchpads "tasque")
     , ((modm,               xK_x     ), namedScratchpadAction scratchpads "xpad")
     , ((modm,               xK_p     ), namedScratchpadAction scratchpads "ncmpc")
     , ((modm,               xK_u     ), namedScratchpadAction scratchpads "rooter")
-    , ((0,                  xK_Menu     ), namedScratchpadAction scratchpads "top")
-    , ((modm,               xK_v     ), spawn "/home/tom/apps/vb/usr/share/viber/Viber")
+    --, ((modm,               xK_n     ), namedScratchpadAction scratchpads "top")
+    , ((0,                  xK_Menu  ), spawn "/home/tom/scripts/conky.dzen 2>/dev/null")
+--    , ((modm,               xK_v     ), spawn "/home/tom/apps/vb/usr/share/viber/Viber")
     , ((modm,               xK_z     ), spawn "zim")
     , ((modm,               xK_t     ), runOrRaise "kile" (className =? "Kile"))
+    --, ((modm,               xK_y     ), runOrRaise "/home/tom/scripts/gvim-tex.start" (className =? "Gvim"))
     , ((modm,               xK_o     ), spawn "okular")
-    , ((modm,               xK_e     ), spawn "/home/tom/old/tool/eclipse/eclipse")
-    , ((modm,               xK_g     ), spawn "/home/tom/old/tool/Gama16/Gama")
-    , ((modm,               xK_a     ), spawn "sleep 0.2&&urxvtc -t mutt -e mutt")
+    --, ((modm,               xK_e     ), spawn "/home/tom/old/tool/eclipse/eclipse")
+    , ((modm,               xK_e     ), spawn "qtcreator")
+    --, ((modm,               xK_g     ), spawn "/home/tom/old/tool/Gama16/Gama")
+    , ((modm,               xK_g     ), runOrRaise "mendeley" (className =? "Mendeleydesktop.x86_64"))
+    --, ((modm,               xK_a     ), spawn "sleep 0.2&&urxvtc -t mutt -e mutt")
+    , ((modm,               xK_a     ), runOrRaise "thunderbird" (className=? "Thunderbird"))
     , ((modm,               xK_n     ), spawn "/home/tom/scripts/conky.dzen 2>/dev/null")
     , ((modm .|. shiftMask, xK_s     ), spawn "slock")
-    , ((0,             0x1008ff14    ), spawn "/home/tom/scripts/mpd toggle")
-    , ((0,             0x1008ff15    ), spawn "mpc stop")
-    , ((0,             0x1008ff16    ), spawn "mpc prev")
-    , ((0,             0x1008ff17    ), spawn "mpc next")
+    , ((modm,               xK_Down  ), spawn "/home/tom/scripts/mpd toggle")
+    , ((modm,             xK_Up    ), spawn "mpc stop")
+    , ((modm,             xK_Right), spawn "mpc prev")
+    , ((modm,             xK_Left), spawn "mpc next")
+    , ((modm,             xK_F12), spawn "/home/tom/scripts/toggletouchpad.sh")
     --, ((0,             0x1008ff13    ), spawn "/usr/bin/pulseaudio-ctl up")
     --, ((0,             0x1008ff11    ), spawn "/usr/bin/pulseaudio-ctl down")
     --, ((0,             0x1008ff12    ), spawn "/usr/bin/pulseaudio-ctl mute")
     , ((0,             0x1008ff13    ), spawn "amixer -q sset Master 2+")
     , ((0,             0x1008ff11    ), spawn "amixer -q sset Master 2-")
     , ((0,             0x1008ff12    ), spawn "amixer -q sset Master toggle")
+    , ((0,             0x1008ff02    ), spawn "xbacklight -inc 5")
+    , ((0,             0x1008ff03    ), spawn "xbacklight -dec 5")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
     , ((modm .|. shiftMask, xK_f     ), spawn "/home/tom/scripts/pause_ff.sh")
 
      -- Rotate through the available layout algorithms
+    --, ((modm,               xK_space ), sendMessage NextLayout >> logLayout >>= flashText myTextConfig 1 . ( fromMaybe ""))
+    --, ((modm,               xK_space ), sendMessage NextLayout >> logLayout >>= flashText myTextConfig 1 . ( fromMaybe ""))
     , ((modm,               xK_space ), sendMessage NextLayout)
+    , ((mod1Mask, xK_Tab   ), rotSlavesUp)
     --, ((mod1Mask,           xK_f),      setLayout $ XMonad.layoutHook conf)
 
     --  Reset the layouts on the current workspace to default
@@ -108,7 +127,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Move focus to the next window
     , ((modm,               xK_j     ), windows W.focusDown)
 
-    -- Move focus to the previous window
+    -- Move focus to the previous windolw
     , ((modm,               xK_k     ), windows W.focusUp  )
 
     -- Move focus to the master window
@@ -151,7 +170,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-shift-[1..9], Move client to workspace N
     --
     [((m .|. modm, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+        | (i, k) <- zip (XMonad.workspaces conf) ([xK_1 .. xK_9] ++ [xK_0])
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
 --    ++
 
@@ -197,7 +216,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 --
 --myLayout = tiled ||| Mirror tiled ||| Full
 --myLayout = tiled ||| noBorders Full
-myLayout = smartBorders $ avoidStruts  $  tiled ||| noBorders Full
+myLayout = smartBorders $ avoidStruts  $ TwoPane (3/100) (1/2) |||  tiled ||| noBorders Full
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -213,21 +232,23 @@ myManageHook = composeAll . concat $
     , [className =?  x                -->  doShiftAndGo ( myWorkspaces !! 1 )    | x <- myBrowsers]
     , [className =?  x                --> doShiftAndGo ( myWorkspaces !! 2 )     | x <- myWorks]
     , [className =?  x                --> doShift  ( myWorkspaces !! 3 )         | x <- myDocs]
-    , [title     =?   x                --> doShiftAndGo  ( myWorkspaces !! 4 )     | x <- myEmails]
+    , [className =?   x                --> doShiftAndGo  ( myWorkspaces !! 4 )     | x <- myEmails]
    -- , [className =? "Qstardict"              --> doShift "5"
     , [className =?  x                --> doShift  ( myWorkspaces !! 5 )         | x <- myCommunications]
+    , [className =?  x                --> doShift  ( myWorkspaces !! 6 )         | x <- myReferences]
     , [className =?  x                --> doShift  ( myWorkspaces !! 8 )         | x <- myNotes]
   --  , [className =? "Korganizer"                    --> doShift "9"
     , [resource  =? "desktop_window" --> doIgnore]
     , [resource  =? "kdesktop"       --> doIgnore ]]
     where 
           myShells   = ["Urxvt"]
-          myBrowsers = ["Firefox"]      
-          myWorks    = ["Eclipse", "Gama", "Kile"]
+          myBrowsers = ["Firefox","Chromium-browser","Google-chrome-stable"]      
+          myWorks    = ["Eclipse", "Gama", "Kile", "Gvim", "QtCreator"]
           myDocs     = ["Evince", "llpp", "MuPDF", "Okular", "libreoffice-writer"]
-          myEmails   = ["mutt"]
+          myEmails   = ["Thunderbird"]
           myCommunications = ["Skype", "Viber"]
           myNotes    = ["Zim"]
+          myReferences = ["Mendeleydesktop.x86_64"]
           doShiftAndGo ws = doF (W.greedyView ws) <+> doShift ws
 
 ------------------------------------------------------------------------
@@ -250,8 +271,8 @@ myEventHook = mempty
 --
 -- By default, do nothing.
 --myStartupHook = return ()
-myStartupHook = ewmhDesktopsStartup >> setWMName "LG3D" -- deek
-
+--myStartupHook = ewmhDesktopsStartup >> setWMName "LG3D" -- deek
+myStartupHook = setWMName "LG3D" -- fix java
 ------------------------------------------------------------------------
 
 --main = xmonad defaults
@@ -265,7 +286,8 @@ main = do
     -- dzenLeftBar <- spawnPipe myXmonadBar
     -- dzenRightBar <- spawnPipe myStatusBar
     --xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig {
-    xmonad $ ewmh defaultConfig {
+    --xmonad $ ewmh defaultConfig {
+    xmonad $ defaultConfig {
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
         borderWidth        = myBorderWidth,

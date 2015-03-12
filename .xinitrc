@@ -1,9 +1,9 @@
 #~/.zshrc
 xset fp+ /usr/share/fonts/terminus 
-xbindkeys&
-if [ -f $HOME/.Xmodmap ]; then
-    /usr/bin/xmodmap $HOME/.Xmodmap
-fi
+#xbindkeys&
+#if [ -f $HOME/.Xmodmap ]; then
+#    /usr/bin/xmodmap $HOME/.Xmodmap
+#fi
 
 #start urxvt daemon
 urxvtd -q -o -f
@@ -12,7 +12,9 @@ urxvtd -q -o -f
 #sync firefox profile to ram disk
 ~/bin/firefox-sync&
 #background image 
-feh --bg-fill if2.jpg
+#feh --bg-fill bg/gentoo_metal.png
+#feh --randomize --bg-fill ~/bg/
+feh  --bg-scale ~/bg/dark_side_of_the_moon-wallpaper-1920x1080.jpg
 #~/bin/luakit-sync&
 #~/bin/dwb-sync&
 #exec awesome
@@ -37,8 +39,10 @@ feh --bg-fill if2.jpg
 #exec monsterwm
 #exec notion
 #exec pictorwm
-xmonad
 #bspwm
 #xbindkeys
-#openbox
 #exec startkde
+#openbox
+#xcalib -d :0 -s 0 -v .local/share/icc/TPLCD.ICM
+~/scripts/setpointstick.sh
+xmonad

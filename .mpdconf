@@ -10,7 +10,7 @@
 # be disabled and audio files will only be accepted over ipc socket (using
 # file:// protocol) or streaming files over an accepted protocol.
 #
-music_directory		"/mnt/data/music"
+music_directory		"/home/tom/music"
 #
 # This setting sets the MPD internal playlist directory. The purpose of this
 # directory is storage for playlists created by MPD. The server will use 
@@ -195,11 +195,17 @@ audio_output {
 #    options         "dev=dmixer"
 #    device          "plug:dmix" # Both lines cause MPD to output to dmix.
 #    mixer_control	"Master"		# optional
-#    mixer_control	"Master"		# optional
     use_mmap        "yes"    
     auto_resample   "no"
-#	mixer_index	"0"		# optional
+	mixer_index	"0"		# optional
 }
+
+#audio_output {
+#  type    "alsa"
+#  name    "equal"
+#  device  "plug:plugequal"
+#}
+
 #samplerate_converter        "0" # MPD's best, most CPU intensive algorithm. See 'man mpd.conf' for others — for anything other than the poorest "internal", libsamplerate must be installed.
 #
 # An example of an OSS output:
