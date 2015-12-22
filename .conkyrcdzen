@@ -1,0 +1,22 @@
+background yes
+out_to_console yes
+out_to_x no
+# Update interval in seconds
+update_interval 2
+cpu_avg_samples 2
+mpd_host 127.0.0.1
+mpd_port 6600
+color1 666666
+ 
+#TEXT
+#^fg(\#7B92D6)${time %a %b %d %H:%M}  $battery $battery_time ${acpitemp}C ${exec cat /proc/acpi/ibm/fan| sed '2!d'| awk '{print $2}'}RPM ${mem}/$memmax,${memperc}% $loadavg ${if_existing /home/tom/.mpd}[MPD $mpd_status] [$mpd_artist - $mpd_title]$endif
+
+TEXT
+^fg(\#F4B634) ${time %a %b %d %H:%M}  \
+${if_match "$battery_short" != "U"} ^fg(\#ff0000)$battery${else}^fg(\#3B85D5)$battery$endif   \
+${if_match ${acpitemp} > 69}^fg(\#ff6347)${acpitemp}°C${else}^fg(\#098DF6)${acpitemp}°C $endif  \
+${exec cat /proc/acpi/ibm/fan| sed '2!d' | awk '{print $2}'}rpm \
+${if_match $memperc > 40} ^fg(\#FF0000)${mem}$memmax,${memperc}%${else}^fg(\#3B85D5)${mem}/$memmax,${memperc}% $endif \
+^fg(\#F5A781)${cpu}%  \
+${if_match ${loadavg 1} > 1} ^fg(\#FF4500)$loadavg ${else}^fg(\#004AB3)$loadavg$endif  \
+$if_mpd_playing ^fg(\#7B92D6)[$mpd_status] [${mpd_artist 16} - ${mpd_title 32}]$endif

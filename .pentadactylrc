@@ -1,0 +1,29 @@
+"1.0rc1
+
+"so .pentadactyl/userChrome.css
+loadplugins '\.(js|penta)$'
+group user
+
+so .pentadactyl/colors/kolor.penta
+:set! toolkit.storage.synchronous=0
+:set fullscreen
+:set hintkeys=asdfghjklei;ru
+
+"nnoremap j 5j
+nmap -builtin j 5j
+"nmap j 5j
+nmap -builtin k 5k
+"nnoremap k 5k
+":set guioptions=Cs
+:set guioptions+=mT
+
+:set showtabline=never
+map <C-k> gt
+map <C-j> gT
+"map x :set fullscreen <CR> :toolbarhide Add-on Bar <CR> :set fullscreen <CR>
+"map x :toolbarhide Add-on Bar <CR> :set fullscreen <CR>
+"map z :set nofullscreen <CR> :toolbarshow Add-on Bar <CR>
+"autocmd Fullscreen .* -js document.getElementById("addon-bar").removeAttribute("moz-collapsed")
+"imap x <ESC> :set fs <CR> i
+"imap z <ESC> :set nofs <CR> i
+" vim: set ft=pentadactyl:

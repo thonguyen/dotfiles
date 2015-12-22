@@ -1,0 +1,29 @@
+URxvt*termName:     rxvt-256color
+URxvt*scrollBar:  false 
+#include "./.urxvt-color-wombat"
+
+URxvt*saveLines:    1024 
+URxvt*externalBorder: 0
+URxvt*internalBorder: 0
+URxvt*scrollTtyOutput:  false
+URxvt*scrollWithBuffer: false
+URxvt.scrollBar_floating: false
+#urxvt*font:        -xos4-terminus-medium-*-*-*-16-*-*-*-*-*-*, -misc-fixed-medium-r-normal--14-140-75-75-c-90-iso10646-1
+#urxvt*boldFont:    -xos4-terminus-bold-*-*-*-16-*-*-*-*-*-*, -misc-fixed-bold-r-normal--14-140-75-75-c-90-iso10646-1
+URxvt*font:        -xos4-terminus-medium-*-*-*-16-*-*-*-*-iso10646-1, xft:Inconsolata\ for\ Powerline:pixelsize=12
+URxvt*boldFont:    -xos4-terminus-bold-*-*-*-16-*-*-*-*-iso10646-1, xft:Inconsolata\ for\ Powerline:pixelsize=12
+
+
+
+#urxvt*font:        -misc-fixed-medium-r-normal--14-140-75-75-c-90-iso10646-1
+#urxvt*boldFont:    -misc-fixed-bold-r-normal--14-140-75-75-c-90-iso10646-1
+XTerm*oldXtermFKeys: true
+URxvt.urgentOnBell: true
+#URxvt.preeditType: OverTheSpot,Root,None 
+#URxvt.inputMethod: ibus
+#URxvt.imLocale:vi_VN.UTF-8
+
+
+Xft.dpi: 108
+
+Xcursor.theme: OpenZone_Black_Slim

@@ -1,0 +1,26 @@
+#!/bin/zsh
+FG='#aaaaaa'
+BG='#1a1a1a'
+pdzen=`pidof dzen2`
+ptrayer=`pidof trayer-srg`
+
+#screen width = 1920
+if [[ -z "$pdzen" ]]
+then
+    if [[ -n "$ptrayer" ]]
+    then
+        kill "$ptrayer"
+    fi
+    #trayer --edge top --align right --widthtype request --SetDockType true --SetPartialStrut true --transparent true --alpha 0 --tint 0x000000 --expand true --heighttype pixel --height 16 &
+    trayer-srg --edge top --align right --widthtype request --SetDockType true --SetPartialStrut true --transparent true --alpha 0 --tint 0x1a1a1a --expand true --heighttype pixel --height 14&
+    conky -c /home/tom/.conkyrcdzen| dzen2 -fn 'Zekton:pixelsize=11' -ta r -bg $BG  -w 1330 -x 0&
+    #conky -c /home/tom/.conkyrcdzen| dzen2 -fn '-*-terminus-*-*-*-16-*-*-*-*-*-*-*' -ta r -bg $BG  -w 1800 -x 0&
+else
+    #killall dzen2
+    kill "$pdzen"
+    if [[ -n "$ptrayer" ]]
+    then
+        kill "$ptrayer"
+    fi
+fi
+exit 0

@@ -1,0 +1,8 @@
+killall polipo
+if [ "$1" ]; then
+    cp .polipo_$1 .polipo
+    echo "xyz"
+else    
+    cp .polipo_none .polipo
+fi
+polipo

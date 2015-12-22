@@ -1,0 +1,133 @@
+#=================================#
+#||                             ||#
+#||  N C M P C P P  C O N F I G ||#
+#||                             ||#
+#=================================#
+##
+##### connection settings #####
+## set it in order to make tag editor and renaming files work properly
+mpd_host = "localhost"
+mpd_port = "6600"
+mpd_music_dir = "/home/tom/music"
+mpd_connection_timeout = "5"
+#mpd_crossfade_time = "1"
+#mpd_communication_mode = "notifications" (polling/notifications)
+
+system_encoding = ""
+##### delays #####
+## delay after playlist highlighting will be disabled (0 = don't disable)
+playlist_disable_highlight_delay = "5"
+## defines how long various messages are supposed to be visible
+message_delay_time = "4"
+song_list_format = "{%a - }{%t}|{$8%f$9}$R{$3(%l)$9}"
+song_status_format = "{{%a{ \"%b\"{ (%y)}} - }{%t}}|{%f}"
+song_library_format = "{%n - }{%t}|{%f}"
+tag_editor_album_format = "{(%y) }%b"
+
+alternative_header_first_line_format = "$b$1$aqqu$/a$9 {%t}|{%f} $1$atqq$/a$9$/b"
+#
+alternative_header_second_line_format = "{{$4%a$9}{ - $7%b$9}}|{%D}"
+#
+##
+## Note: Below variables also supports
+## text attributes listed above.
+##
+#
+now_playing_prefix = "$b$u"
+now_playing_suffix = "$/b$/u"
+browser_playlist_prefix = "$2playlist$9 "
+selected_item_prefix = "$6"
+selected_item_suffix = "$9"
+## colors are not supported for below variable
+song_window_title_format = "{%a - }{%t}|{%f}"
+
+song_columns_list_format = "(5f)[cyan]{l} (40)[white]{t|f} (25)[cyan]{a} (25)[white]{b}"
+##### various settings #####
+##
+execute_on_song_change = ""
+playlist_show_remaining_time = "no"
+playlist_shorten_total_times = "yes"
+playlist_separate_albums = "no"
+playlist_display_mode = "columns" (classic/columns)
+browser_display_mode = "columns" (classic/columns)
+search_engine_display_mode = "classic" (classic/columns)
+discard_colors_if_item_is_selected = "yes"
+incremental_seeking = "yes"
+seek_time = "1"
+autocenter_mode = "yes"
+centered_cursor = "yes"
+#progressbar_look = "#"
+default_place_to_search_in = "database" (database/playlist)
+user_interface = "alternative" (classic/alternative)
+#media_library_left_column = "a" (possible values: a,y,g,c,p, legend above)
+default_find_mode = "wrapped" (wrapped/normal)
+default_space_mode = "add" (add/select)
+#default_tag_editor_left_col = "dirs" (albums/dirs)
+default_tag_editor_pattern = "%n - %t"
+header_visibility = "yes"
+statusbar_visibility = "yes"
+header_text_scrolling = "yes"
+#fancy_scrolling = "yes"
+cyclic_scrolling = "no"
+lines_scrolled = "2"
+follow_now_playing_lyrics = "yes"
+#ncmpc_like_songs_adding = "yes" (enabled - add/remove, disabled - always add)
+show_hidden_files_in_local_browser = "no"
+#display_screens_numbers_on_start = "yes"
+
+#screen_switcher_mode = "sequence: 2 -> 3"
+##
+## Note: You can define startup screen for ncmpcpp
+## by choosing screen number from the list above.
+##
+#startup_screen = "2"
+jump_to_now_playing_song_at_start = "yes"
+#ask_before_clearing_main_playlist = "no"
+clock_display_seconds = "yes"
+display_volume_level = "yes"
+display_bitrate = "yes"
+display_remaining_time = "no"
+regular_expressions = "basic" (basic/extended)
+##
+## Note: If below is enabled, ncmpcpp will ignore leading
+## "The" word while sorting items in browser, tags in
+## media library, etc.
+##
+ignore_leading_the = "no"
+block_search_constraints_change_if_items_found = "yes"
+mouse_support = "yes"
+mouse_list_scroll_whole_page = "yes"
+empty_tag_marker = "<empty>"
+tag_editor_extended_numeration = "no"
+#media_library_display_date = "yes"
+#media_library_disable_two_column_mode = "no"
+enable_window_title = "yes"
+##
+#allow_physical_files_deletion = "yes"
+#allow_physical_directories_deletion = "no"
+##### lyrics support #####
+##
+## supported lyrics databases:
+##
+## - 1 - lyricsplugin.com
+##
+#lyrics_database = "1"
+external_editor = "vim"
+use_console_editor = "yes" (set to yes, if your editor is console app)
+##### colors definitions #####
+colors_enabled = "yes"
+empty_tag_color = "black"
+header_window_color = "white"
+volume_color = "cyan"
+state_line_color = "black"
+state_flags_color = "cyan"
+main_window_color = "cyan"
+color1 = "blue"
+color2 = "cyan"
+main_window_highlight_color = "cyan"
+progressbar_color = "cyan"
+statusbar_color = "cyan"
+alternative_ui_separator_color = "black"
+active_column_color = "red"
+window_border_color = "green"
+active_window_border = "red"
